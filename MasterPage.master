@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 3.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Src="~/Wuc/wucLoading.ascx" TagName="wucLoading" TagPrefix="uc1" %>
+<%@ Register Src="~/Wuc/wucMessageBox.ascx" TagName="wucMessageBox" TagPrefix="uc2" %>
+<%@ Register Src="~/Wuc/wucMessageBoxBootstrap.ascx" TagName="wucMessageBoxBootstrap" TagPrefix="uc3" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Mahlil Project</title>
+    <link type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <link type="text/css" href="dist/css/sb-admin-2.css" rel="stylesheet" />
+    <link type="text/css" href="vendor/morrisjs/morris.css" rel="stylesheet" />
+    <link type="text/css" href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="Styles/Site.css" rel="stylesheet" />
+
+
+    <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script type="text/javascript" src="../dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript" src="../Scripts/component.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body style="font-family: 'Helvetica';" class="imgBody">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />-
+            <div class="main">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <uc1:wucLoading ID="wucLoading1" runat="server" />
+            <uc2:wucMessageBox ID="wucMessageBox1" runat="server" />
+            <uc3:wucMessageBoxBootstrap ID="wucMessageBoxBS" runat="server" />
+            <div class="watermark1">Created By IT Development (#)</div>
+            <div class="clear"></div>-
+    </form>
+</body>
+</html>

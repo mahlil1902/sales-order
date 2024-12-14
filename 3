@@ -1,0 +1,480 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Coa.aspx.cs" Inherits="Master_Coa" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register src="~/Wuc/wucConfirmBox.ascx" tagname="wucConfirmBox" tagprefix="uc2" %>
+ <%@ Reference VirtualPath="~/print_preview.aspx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:UpdateProgress ID="updProgress" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="pnlPage">
+          <ProgressTemplate>
+          <div class="col-12 stretch inCtn gcWax cText" >
+          <div class="col-4 inCtn">
+          <div class="col-12">
+       
+         <!--===  <img id="imgProgress"  src="../img/progress.gif" style="width: 35%; " > -->
+                              </div>
+                              <div class="col-12 cText lblStat bText" style="color:Black; font-size:small;">
+                                               ..::: Please Wait :::..
+                                                </div>
+                                                 </div></div>
+                                                
+                                </ProgressTemplate>
+            </asp:UpdateProgress>
+   <div class="titlePage">MASTER CHART OF ACCOUNT</div>
+    <asp:UpdatePanel ID="pnlPage" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:Panel ID="mainPanel" runat="server">
+       
+          <asp:UpdatePanel ID="updCOA0" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+            <asp:Panel ID="fraCoa0" runat="server">
+            <div  style="width:100%; ">
+            <div style="width:100%; font-size:small;  background-color: Gray; color: white; ">
+            <span style="text-align:center;font-weight: bold;">&nbsp;&nbsp;Chart Of Account [Level-0]</span> 
+             
+            </div>
+            <div style="width:100%; ">
+                <asp:Button ID="btnSave0" runat="server" Text="Save" onclick="btnSave0_Click" />
+                <asp:Button ID="btnDel0"
+                    runat="server" Text="Delete" onclick="btnDel0_Click" /><asp:Button ID="btnChild0" runat="server" 
+                    Text="Child" onclick="btnChild0_Click" /><asp:Button
+                        ID="btnCancel0" runat="server" Text="Cancel" 
+                    onclick="btnCancel0_Click" /></div>
+                         <div style="width:100%;  height: 5px; padding-top:2px; border-top:thin solid black;">&nbsp;</div>
+                         <div style="width:100%;  height: 25px; padding-top:2px;  ">
+                       
+              <div style="float:left;">&nbsp;&nbsp;COA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="txtCOA0" runat="server" MaxLength="75" Width="80px" Enabled="false" CssClass="upperF"></asp:TextBox>
+                  </div>
+            </div>
+               <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;Description &nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="txtCOA0Desc" runat="server" MaxLength="75" Width="350px" CssClass="upperF"></asp:TextBox>
+                  </div>
+            </div>
+             <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;Position &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:DropDownList ID="ddlPost" runat="server">
+                  <asp:ListItem Value="D" Text="DEBET"></asp:ListItem>
+                  <asp:ListItem Value="K" Text="KREDIT"></asp:ListItem>
+                  </asp:DropDownList>
+                  </div>
+            </div>
+              <div style="width:100%;  height: 5px; padding-top:2px; border-bottom:thin solid black;">&nbsp;</div>
+                   <div style="width: 100%; height: 290px; overflow: auto; border:thin solid black;">
+              <asp:GridView ID="grdCOA0" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="NO DATA" 
+                                        BackColor="White" ShowFooter="False" 
+                           PagerSettings-Visible="false" onrowdatabound="grdCOA0_RowDataBound">
+                                        <HeaderStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" />
+                                        <EmptyDataRowStyle HorizontalAlign="Center" />
+                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                        <AlternatingRowStyle BackColor="White" />
+                                        <PagerStyle BorderWidth="1px" BackColor="White" ForeColor="#284775" HorizontalAlign="Center" />
+                                        <FooterStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="COA ID">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCoa0ID" runat="server" Text='<%# Bind("COA0") %>'/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="80px" />
+                                                </asp:TemplateField>
+                                            
+                                                <asp:TemplateField HeaderText="Decsription">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCAO0Desc" runat="server" Text='<%# Bind("DESCS") %>'/>
+                                                    
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width="250px"/>
+                                                </asp:TemplateField>
+                                                   <asp:TemplateField HeaderText="Post">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                       
+                                                     <asp:Label ID="lblCOA0Post" runat="server" Text='<%# Bind("POST") %>'/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                </asp:TemplateField>
+                                                   <asp:TemplateField HeaderText="Status">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                       
+                                                     <asp:Label ID="lblCOA0Stat" runat="server" Text='<%# Bind("STAT") %>' Visible="false"/>
+                                                      <asp:Image ID="imgNonActive0" runat="server" ImageUrl="~/Images/cross.png" />
+                                                        <asp:Image ID="imgActive0" runat="server" ImageUrl="~/Images/tick.png" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="imgCOA0" runat="server" ImageUrl="~/images/edit.gif" OnClick="imgCOA0_Click"  />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+            </div>
+             </asp:Panel>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+         
+           
+           
+            <asp:UpdatePanel ID="updCOA1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+            <asp:Panel ID="fraCoa1" runat="server">
+            <div style="width:100%;">
+            <div style="width:100%; font-size:small;  background-color: Gray; color: white; ">
+            <span style="text-align:center;font-weight: bold;">&nbsp;&nbsp;Chart Of Account [Level-1]</span> 
+               
+            </div>
+            <div style="width:100%; ">
+                <asp:Button ID="btnSave1" runat="server" Text="Save" onclick="btnSave1_Click" />
+                <asp:Button ID="btnDel1"
+                    runat="server" Text="Delete" onclick="btnDel1_Click" /><asp:Button ID="btnChild1" runat="server" 
+                    Text="Child" onclick="btnChild1_Click" /><asp:Button
+                        ID="btnCancel1" runat="server" Text="Cancel" 
+                    onclick="btnCancel1_Click" /></div>
+                         <div style="width:100%;  height: 5px; padding-top:2px; border-top:thin solid black;">&nbsp;</div>
+                         <div style="width:100%;  height: 25px; padding-top:2px;  ">
+                       
+              <div style="float:left;">&nbsp;&nbsp;COA-0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="txtRCOA0" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                   <asp:TextBox ID="txtRDesc0" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+               <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;Description &nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtCOA1" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtDesc1" runat="server" MaxLength="75" Width="350px"></asp:TextBox>
+                  </div>
+            </div>
+              <div style="width:100%;  height: 5px; padding-top:2px; border-bottom:thin solid black;">&nbsp;</div>
+             <div style="width: 100%; height: 320px; overflow: auto; border:thin solid black;">
+              <asp:GridView ID="grdCOA1" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="NO DATA" 
+                                        BackColor="White" ShowFooter="False" 
+                     PagerSettings-Visible="false" onrowdatabound="grdCOA1_RowDataBound">
+                                        <HeaderStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" />
+                                        <EmptyDataRowStyle HorizontalAlign="Center" />
+                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                        <AlternatingRowStyle BackColor="White" />
+                                        <PagerStyle BorderWidth="1px" BackColor="White" ForeColor="#284775" HorizontalAlign="Center" />
+                                        <FooterStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="COA ID">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCOA1ID" runat="server" Text='<%# Bind("COA1") %>'/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="80px" />
+                                                </asp:TemplateField>
+                                            
+                                                <asp:TemplateField HeaderText="Decsription">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCOA1Desc" runat="server" Text='<%# Bind("DESCS1") %>'/>
+                                                    
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width=""/>
+                                                </asp:TemplateField>
+                                               
+                                                   <asp:TemplateField HeaderText="Status">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                       
+                                                    <asp:Label ID="lblCOA1Stat" runat="server" Text='<%# Bind("STATUS") %>' Visible="false"/>
+                                                      <asp:Image ID="imgNonActive1" runat="server" ImageUrl="~/Images/cross.png" />
+                                                        <asp:Image ID="imgActive1" runat="server" ImageUrl="~/Images/tick.png" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="center" VerticalAlign="Top" Width="30"/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="imgCOA1" runat="server" ImageUrl="~/images/edit.gif" OnClick="imgCOA1_Click"  />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+            </div>
+             </asp:Panel>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+            <asp:UpdatePanel ID="updCOA2" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+            <asp:Panel ID="fraCoa2" runat="server">
+            <div  style="width:100%;  ">
+            <div style="width:100%; font-size:small;  background-color: Gray; color: white; ">
+            <span style="text-align:center;font-weight: bold;">&nbsp;&nbsp;Chart Of Account [Level-2]</span> 
+               
+            </div>
+            <div style="width:100%; ">
+                <asp:Button ID="btnSave2" runat="server" Text="Save" onclick="btnSave2_Click" />
+                <asp:Button ID="btnDel2" runat="server" Text="Delete" onclick="btnDel2_Click" />
+                <asp:Button ID="btnChild2" runat="server" Text="Child" 
+                    onclick="btnChild2_Click" />
+                <asp:Button ID="btnCancel2" runat="server" Text="Cancel" onclick="btnCancel2_Click" /></div>
+                         <div style="width:100%;  height: 5px; padding-top:2px; border-top:thin solid black;">&nbsp;</div>
+                         <div style="width:100%;  height: 25px; padding-top:2px;  ">
+                       
+              <div style="float:left;">&nbsp;&nbsp;COA-0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="txtR2COA0" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                   <asp:TextBox ID="txtR2COA0Desc" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+               <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;COA-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtR2COA1" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtR2COA1Desc" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+                <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;Description &nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtCOA2" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtDesc2" runat="server" MaxLength="75" Width="350px"></asp:TextBox>
+                  </div>
+            </div>
+              <div style="width:100%;  height: 5px; padding-top:2px; border-bottom:thin solid black;">&nbsp;</div>
+             <div style="width: 100%; height: 290px; overflow: auto; border:thin solid black;">
+              <asp:GridView ID="grdCOA2" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="NO DATA" 
+                            BackColor="White" ShowFooter="False" PagerSettings-Visible="false" 
+                     onrowdatabound="grdCOA2_RowDataBound"  >
+                <HeaderStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle HorizontalAlign="Center" />
+                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <AlternatingRowStyle BackColor="White" />
+                <PagerStyle BorderWidth="1px" BackColor="White" ForeColor="#284775" HorizontalAlign="Center" />
+                <FooterStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="COA ID">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCOA2ID" runat="server" Text='<%# Bind("COA2") %>'/>
+                                                         <asp:Label ID="lblCOA0ID" runat="server" Text='<%# Bind("COA0") %>' Visible="false"/>
+                                                          <asp:Label ID="lblCOA1ID" runat="server" Text='<%# Bind("COA1") %>' Visible="false"/>
+
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="80px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Decsription">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCOA2Desc" runat="server" Text='<%# Bind("DESCS") %>'/> 
+                                                          <asp:Label ID="lblCOAR0Desc" runat="server" Text='<%# Bind("DESCS0") %>' Visible="false"/>  
+                                                          <asp:Label ID="lblCOAR1Desc" runat="server" Text='<%# Bind("DESCS1") %>' Visible="false"/>                                                                  
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width=""/>
+                                                </asp:TemplateField>                                               
+                                                   <asp:TemplateField HeaderText="Status">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                       
+                                                    <asp:Label ID="lblCOA2Stat" runat="server" Text='<%# Bind("STATUS") %>' Visible="false"/>
+                                                      <asp:Image ID="imgNonActive2" runat="server" ImageUrl="~/Images/cross.png" />
+                                                        <asp:Image ID="imgActive2" runat="server" ImageUrl="~/Images/tick.png" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="center" VerticalAlign="Top" Width="30"/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="imgCOA2" runat="server" ImageUrl="~/images/edit.gif" OnClick="imgCOA2_Click"  />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+            </div>
+             </asp:Panel>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+              <asp:UpdatePanel ID="updCOA3" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+            <asp:Panel ID="fraCoa3" runat="server">
+            <div  style="width:100%;  ">
+            <div style="width:100%; font-size:small;  background-color: Gray; color: white; ">
+            <span style="text-align:center;font-weight: bold;">&nbsp;&nbsp;Chart Of Account [Level-3]</span> 
+               
+            </div>
+            <div style="width:100%; ">
+                <asp:Button ID="btnSave3" runat="server" Text="Save" onclick="btnSave3_Click" />
+                <asp:Button ID="btnDel3" runat="server" Text="Delete" onclick="btnDel3_Click" />
+                <asp:Button ID="btnCancel3" runat="server" Text="Cancel" onclick="btnCancel3_Click" /></div>
+                         <div style="width:100%;  height: 5px; padding-top:2px; border-top:thin solid black;">&nbsp;</div>
+                         <div style="width:100%;  height: 25px; padding-top:2px;  ">
+                       
+              <div style="float:left;">&nbsp;&nbsp;COA-0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="txtR3COA0" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                   <asp:TextBox ID="txtR3COA0Desc" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+               <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;COA-1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtR3COA1" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtR3COA1Desc" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+              <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;COA-2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtR3COA2" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtR3COA2Desc" runat="server" MaxLength="75" Width="350px" Enabled="false"></asp:TextBox>
+                  </div>
+            </div>
+                <div style="width:100%;  height: 25px; padding-top:2px; ">
+              <div style="float:left;">&nbsp;&nbsp;Description &nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:TextBox ID="txtCOA3" runat="server" MaxLength="75" Width="80px" Enabled="false"></asp:TextBox>
+                  <asp:TextBox ID="txtDesc3" runat="server" MaxLength="75" Width="350px"></asp:TextBox>
+                  </div>
+            </div>
+              <div style="width:100%;  height: 5px; padding-top:2px; border-bottom:thin solid black;">&nbsp;</div>
+             <div style="width: 100%; height: 260px; overflow: auto; border:thin solid black;">
+              <asp:GridView ID="grdCOA3" runat="server" AutoGenerateColumns="False" Width="100%" EmptyDataText="NO DATA" 
+                            BackColor="White" ShowFooter="False" PagerSettings-Visible="false" 
+                     onrowdatabound="grdCOA3_RowDataBound" >
+                <HeaderStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" />
+                <EmptyDataRowStyle HorizontalAlign="Center" />
+                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <AlternatingRowStyle BackColor="White" />
+                <PagerStyle BorderWidth="1px" BackColor="White" ForeColor="#284775" HorizontalAlign="Center" />
+                <FooterStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="COA ID">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                    <asp:Label ID="lblR3COA3ID" runat="server" Text='<%# Bind("COA3") %>'/>
+                                                        <asp:Label ID="lblR3COA0ID" runat="server" Text='<%# Bind("COA0") %>' Visible="false"/>
+                                                         <asp:Label ID="lblR3COA1ID" runat="server" Text='<%# Bind("COA1") %>' Visible="false"/>
+                                                          <asp:Label ID="lblR3COA2ID" runat="server" Text='<%# Bind("COA2") %>' Visible="false"/>
+
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="80px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Decsription">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblR3COA3Desc" runat="server" Text='<%# Bind("DESC3") %>'/> 
+                                                          <asp:Label ID="lblR3COA0Desc" runat="server" Text='<%# Bind("DESC0") %>' Visible="false"/>  
+                                                          <asp:Label ID="lblR3COA1Desc" runat="server" Text='<%# Bind("DESC1") %>' Visible="false"/>      
+                                                            <asp:Label ID="lblR3COA2Desc" runat="server" Text='<%# Bind("DESC2") %>' Visible="false"/>                                                              
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width=""/>
+                                                </asp:TemplateField>                                               
+                                                   <asp:TemplateField HeaderText="Status">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                       
+                                                    <asp:Label ID="lblR3COA3Stat" runat="server" Text='<%# Bind("STAT") %>' Visible="false"/>
+                                                      <asp:Image ID="imgNonActive3" runat="server" ImageUrl="~/Images/cross.png" />
+                                                        <asp:Image ID="imgActive3" runat="server" ImageUrl="~/Images/tick.png" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="center" VerticalAlign="Top" Width="30"/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px"/>
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="imgCOA3" runat="server" ImageUrl="~/images/edit.gif" OnClick="imgCOA3_Click"  />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+            </div>
+             </asp:Panel>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+                   <asp:UpdatePanel ID="pnlData" runat="server" UpdateMode="Conditional"> 
+        <ContentTemplate>
+            <asp:Panel ID="fraData" runat="server" >
+            
+           <div style="width: 100%; height: 30px; color: #325d79;">
+           
+                                       
+                                        <div style=" width: 30%;float: left; margin: 0px 0px 0px 0px; ">
+                                            TOP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:TextBox ID="txtTOP" runat="server" Text="100" />
+                                        </div>
+                                        <asp:Panel ID="Panel1" runat="server" DefaultButton="imgSearchBillTo">
+                                            <div style="float: right; margin: 5px 0px 5px 0px;">
+                                                Search
+                                                <asp:TextBox ID="txtFilter" runat="server" CssClass="textbox" />
+                                                <asp:ImageButton ID="imgSearchBillTo" runat="server" ImageUrl="~/images/search.png" OnClick="imgSearch_Click"  />
+                                            </div>
+                                        </asp:Panel>
+                                        
+                                    </div>
+                                 <div style="width: 100%; height: 30px; color: #325d79;">
+           
+                                       
+                                        <div style=" width: 80%;float: left; margin: 0px 0px 0px 0px; ">
+                                            COMPANY
+                                           <asp:DropDownList ID="ddlCompany" Width="250px" AutoPostBack="true"
+                                                runat="server" onselectedindexchanged="ddlCompany_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                      
+                                            <div style="float: right; margin: 4px 0px 0px 0px; ">
+                                              
+                                                <asp:ImageButton ID="btnAdd" runat="server" ImageUrl="~/images/add.png" ToolTip="Click this to add account" OnClick="btnAdd_Click" />
+                                               &nbsp;
+                                                 <asp:ImageButton ID="btnExport" runat="server" ImageUrl="~/images/print.gif" 
+                                                    ToolTip="Click this to add account" onclick="btnExport_Click"  />
+                                            </div>
+                                        
+                                        
+                                    </div>
+                                    <div style="width: 100%; height: 380px; color: #325d79; border:thin solid black; overflow:auto;">
+                                       <asp:GridView ID="gridCOA" runat="server" AutoGenerateColumns="False" 
+                                            Width="100%" EmptyDataText="NO DATA" 
+                                        BackColor="White" ShowFooter="False" PagerSettings-Visible="false" 
+                                            onrowdatabound="gridCOA_RowDataBound">
+                                        <HeaderStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" />
+                                        <EmptyDataRowStyle HorizontalAlign="Center" />
+                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                        <AlternatingRowStyle BackColor="White" />
+                                        <PagerStyle BorderWidth="1px" BackColor="White" ForeColor="#284775" HorizontalAlign="Center" />
+                                        <FooterStyle BackColor="#2E1A75" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="COA ID">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCoaID" runat="server" Text='<%# Bind("COA") %>'/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="120px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Parent" Visible="false">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCOAPID" runat="server" Text='<%# Bind("COAP") %>' Visible="false"/>
+                                                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("PARENT") %>' Visible="false"/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width=""/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Decsription">
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDesc" runat="server" Text='<%# Bind("DESCS") %>'/>
+                                                         <asp:Label ID="lblTier" runat="server" Text='<%# Bind("TIER") %>' Visible="false"/>
+                                                          <asp:Label ID="lblIsEnd" runat="server" Text='<%# Bind("isEnd") %>' Visible="false"/>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width=""/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Edit">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" Width="100px"/>
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="imgEdit" runat="server" ImageUrl="~/images/edit.gif"  OnClick="imgEdit_Click" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                    </asp:Panel>
+
+        </ContentTemplate>
+        </asp:UpdatePanel>
+        </asp:Panel>
+     </ContentTemplate>
+    </asp:UpdatePanel>
+     <uc2:wucConfirmBox ID="wucConfirmBox1" runat="server" OnHide="wucConfirmBox_Hide" />
+</asp:Content>
+
